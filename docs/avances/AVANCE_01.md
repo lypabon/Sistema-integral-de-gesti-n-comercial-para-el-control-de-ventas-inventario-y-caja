@@ -12,7 +12,6 @@
 | División de actividades entre las tres integrantes | [`PLAN_DE_TRABAJO.md`](../PLAN_DE_TRABAJO.md) |
 | Roadmap de actividades por semana | [`ROADMAP.md`](../ROADMAP.md) |
 | Convenciones de ramas, commits, issues y revisiones | [`CONTRIBUTING.md`](../../CONTRIBUTING.md) |
-| Trabajo escrito del Parcial 1 como punto de partida | [`parcial-1/`](../parcial-1/) |
 
 ## Decisiones tomadas
 

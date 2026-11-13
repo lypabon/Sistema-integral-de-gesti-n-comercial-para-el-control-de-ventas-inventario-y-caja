@@ -38,8 +38,6 @@ Este sistema centraliza toda la operación del comercio en un solo lugar: recibi
 
 **Arquitectura propuesta:** tres capas (presentación, lógica de negocio y persistencia), con la capa de negocio dividida por módulos de bajo acoplamiento. Atributos de calidad prioritarios: fiabilidad, seguridad, usabilidad y mantenibilidad.
 
-El detalle está en el trabajo escrito del Parcial 1: [`docs/parcial-1/Parcial_1_Corte1_AS.docx`](docs/parcial-1/Parcial_1_Corte1_AS.docx).
-
 ## Avances
 
 | Avance | Contenido | Estado |
@@ -60,6 +58,5 @@ Ver el plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md).
     ├── PLAN_DE_TRABAJO.md   # Quién hace qué
     ├── ROADMAP.md           # Fases, fechas y entregables
     ├── avances/             # Registro de cada avance
-    ├── img/                 # Imágenes y diagramas
-    └── parcial-1/           # Trabajo escrito base (Corte 1)
+    └── img/                 # Imágenes y diagramas
 ```

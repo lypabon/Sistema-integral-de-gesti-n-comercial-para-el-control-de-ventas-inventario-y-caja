@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Categorías</h1>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn">Crear categoría</button></form>
+<table style="margin-top:16px">
+<tr><th>Nombre</th><th>Descripción</th><th>Productos</th><th></th></tr>
+{% for c in categorias %}
+<tr><td>{{ c.nombre }}</td><td>{{ c.descripcion }}</td><td>{{ c.productos.count }}</td>
+<td><form method="post" action="{% url 'productos:eliminar_categoria' c.pk %}">{% csrf_token %}<button class="btn sec">Eliminar</button></form></td></tr>
+{% endfor %}
+</table>
+{% endblock %}

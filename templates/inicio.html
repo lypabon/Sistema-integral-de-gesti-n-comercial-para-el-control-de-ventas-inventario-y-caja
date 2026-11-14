@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Bienvenida, {{ user.first_name|default:user.username }}</h1>
+<p>Módulos disponibles en esta versión: <a href="{% url 'productos:lista' %}">Gestión de Productos</a>{% if user.rol == 'ADMIN' or user.is_superuser %} y <a href="{% url 'usuarios:lista' %}">Usuarios y Roles</a>{% endif %}.</p>
+{% endblock %}

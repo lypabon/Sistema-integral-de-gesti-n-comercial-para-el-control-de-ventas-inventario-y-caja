@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Precio de {{ producto }}</h1>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn">Actualizar precio</button></form>
+<h2>Historial de precios</h2>
+<table>
+<tr><th>Fecha</th><th>Precio anterior</th><th>Precio nuevo</th><th>Usuario</th></tr>
+{% for h in historial %}<tr><td>{{ h.fecha }}</td><td>{{ h.precio_anterior|default:"—" }}</td><td>{{ h.precio_nuevo }}</td><td>{{ h.usuario.username|default:"—" }}</td></tr>{% endfor %}
+</table>
+{% endblock %}

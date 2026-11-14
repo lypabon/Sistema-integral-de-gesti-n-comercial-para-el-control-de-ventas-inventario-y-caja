@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Usuarios</h1>
+<p><a class="btn" href="{% url 'usuarios:crear' %}">Nuevo usuario</a></p>
+<table>
+<tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Estado</th><th></th></tr>
+{% for u in usuarios %}
+<tr class="{% if not u.is_active %}inactivo{% endif %}"><td>{{ u.username }}</td><td>{{ u.get_full_name }}</td><td>{{ u.get_rol_display }}</td><td>{{ u.is_active|yesno:"Activo,Inactivo" }}</td><td><a href="{% url 'usuarios:editar' u.pk %}">Editar</a></td></tr>
+{% endfor %}
+</table>
+{% endblock %}

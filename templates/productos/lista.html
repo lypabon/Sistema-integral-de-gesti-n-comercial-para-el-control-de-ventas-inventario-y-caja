@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Productos</h1>
+<form method="get" style="margin-bottom:12px"><input name="q" value="{{ q }}" placeholder="Buscar por nombre o código"> <button class="btn sec">Buscar</button></form>
+{% if user.rol == 'ADMIN' or user.rol == 'BODEGA' or user.is_superuser %}
+<p><a class="btn" href="{% url 'productos:crear' %}">Nuevo producto</a> <a class="btn sec" href="{% url 'productos:categorias' %}">Categorías</a></p>
+{% endif %}
+<table>
+<tr><th>Código</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock mínimo</th><th>Estado</th><th></th></tr>
+{% for p in productos %}
+<tr class="{% if not p.activo %}inactivo{% endif %}">
+  <td>{{ p.codigo }}</td><td>{{ p.nombre }}</td><td>{{ p.categoria }}</td><td>$ {{ p.precio_venta }}</td><td>{{ p.stock_minimo }}</td><td>{{ p.activo|yesno:"Activo,Inactivo" }}</td>
+  <td>
+    {% if user.rol == 'ADMIN' or user.rol == 'BODEGA' or user.is_superuser %}
+      <a href="{% url 'productos:editar' p.pk %}">Editar</a>
+      <form method="post" action="{% url 'productos:estado' p.pk %}" style="display:inline">{% csrf_token %}<button class="btn sec">{{ p.activo|yesno:"Inactivar,Reactivar" }}</button></form>
+    {% endif %}
+    {% if user.rol == 'ADMIN' or user.is_superuser %}<a href="{% url 'productos:precio' p.pk %}">Precio</a>{% endif %}
+  </td>
+</tr>
+{% empty %}<tr><td colspan="7">No hay productos registrados.</td></tr>{% endfor %}
+</table>
+{% endblock %}

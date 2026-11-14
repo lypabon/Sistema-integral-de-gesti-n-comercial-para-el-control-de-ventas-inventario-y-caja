@@ -43,20 +43,40 @@ Este sistema centraliza toda la operación del comercio en un solo lugar: recibi
 | Avance | Contenido | Estado |
 |---|---|---|
 | [Avance 1](docs/avances/AVANCE_01.md) | Organización del repositorio, división de actividades y roadmap | ✅ Entregado |
-| Avance 2 | Puntos 1, 2 y 3 del Parcial 3 + arranque del MVP | ⏳ Pendiente |
-| Avance 3 | Puntos 4, 5, 6 y 7 + módulos del flujo de venta | ⏳ Pendiente |
-| Avance 4 | Punto 8, integración y entrega del PDF final | ⏳ Pendiente |
+| [Semana 1](docs/avances/AVANCE_SEMANA_1.md) | Puntos 1 y 2, inicio del Punto 3, decisión de tecnología y módulos de Usuarios y Productos | ✅ Entregado |
+| Semana 2 | Cierre del Punto 3, Puntos 4 y 7, módulos de Inventario, Ventas y Caja | ⏳ Pendiente |
+| Semana 3 | Puntos 5, 6 y 8, revisión y entrega del PDF final | ⏳ Pendiente |
 
 Ver el plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+
+## Cómo ejecutar el sistema
+
+Aplicación web en **Python + Django**. Instrucciones de instalación, pruebas y roles en [`SISTEMA.md`](SISTEMA.md).
+
+```bash
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
 
 ## Estructura del repositorio
 
 ```
 ├── README.md
+├── SISTEMA.md               # Cómo instalar, ejecutar y probar el sistema
 ├── CONTRIBUTING.md          # Convenciones de ramas, commits e issues
+├── manage.py
+├── requirements.txt
+├── gestion_comercial/       # Configuración del proyecto Django
+├── apps/                    # Un módulo del sistema por carpeta
+│   ├── usuarios/            # Usuarios y Roles (US-01, US-02)
+│   ├── productos/           # Gestión de Productos (PR-01 a PR-04)
+│   ├── inventario/  ventas/  clientes/  compras/  caja/  reportes/
+├── templates/               # Capa de presentación (pantallas HTML)
 └── docs/
     ├── PLAN_DE_TRABAJO.md   # Quién hace qué
-    ├── ROADMAP.md           # Fases, fechas y entregables
+    ├── ROADMAP.md           # Actividades por semana
     ├── avances/             # Registro de cada avance
     └── img/                 # Imágenes y diagramas
 ```

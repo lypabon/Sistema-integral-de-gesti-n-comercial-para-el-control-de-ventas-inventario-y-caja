@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Historial de cajas</h1>
+<table>
+<tr><th>#</th><th>Responsable</th><th>Estado</th><th>Apertura</th><th>Cierre</th><th class="num">Diferencia</th></tr>
+{% for c in cajas %}<tr><td><a href="{% url 'caja:detalle' c.pk %}">{{ c.pk }}</a></td><td>{{ c.responsable }}</td><td>{{ c.get_estado_display }}</td><td>{{ c.abierta_en|date:"d/m/Y H:i" }}</td><td>{{ c.cerrada_en|date:"d/m/Y H:i"|default:"—" }}</td><td class="num">{{ c.diferencia|default:"—" }}</td></tr>
+{% empty %}<tr><td colspan="6">Sin cajas.</td></tr>{% endfor %}
+</table>
+{% endblock %}

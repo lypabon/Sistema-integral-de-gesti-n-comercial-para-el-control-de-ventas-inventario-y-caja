@@ -20,6 +20,9 @@
   .inactivo { color: #999; }
   form p { margin: 10px 0; } form label { display: block; font-weight: 600; margin-bottom: 4px; }
   .errorlist { color: #b00020; }
+  .alerta { background: #fff4e5; border-left: 4px solid #e0a800; padding: 8px 12px; margin-bottom: 12px; }
+  .num { text-align: right; }
+  @media print { header, .no-print { display: none; } }
 </style>
 </head>
 <body>
@@ -27,6 +30,8 @@
   <span class="marca">Gestión comercial</span>
   {% if user.is_authenticated %}
     <a href="{% url 'productos:lista' %}">Productos</a>
+    {% if user.rol == 'ADMIN' or user.rol == 'BODEGA' or user.is_superuser %}<a href="{% url 'inventario:existencias' %}">Inventario</a>{% endif %}
+    {% if user.rol == 'ADMIN' or user.rol == 'VENDEDOR' or user.is_superuser %}<a href="{% url 'ventas:nueva' %}">Vender</a><a href="{% url 'caja:mi_caja' %}">Caja</a>{% endif %}
     {% if user.rol == 'ADMIN' or user.is_superuser %}<a href="{% url 'usuarios:lista' %}">Usuarios</a>{% endif %}
     <span>{{ user.username }} · {{ user.get_rol_display }}</span>
     <form method="post" action="{% url 'logout' %}" style="margin:0">{% csrf_token %}<button class="btn sec">Salir</button></form>

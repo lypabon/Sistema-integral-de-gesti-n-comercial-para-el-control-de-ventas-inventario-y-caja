@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h1>Bienvenida, {{ user.first_name|default:user.username }}</h1>
-<p>Módulos disponibles en esta versión: <a href="{% url 'productos:lista' %}">Gestión de Productos</a>{% if user.rol == 'ADMIN' or user.is_superuser %} y <a href="{% url 'usuarios:lista' %}">Usuarios y Roles</a>{% endif %}.</p>
+<p>Módulos disponibles en esta versión:</p>
+<ul>
+  <li><a href="{% url 'productos:lista' %}">Gestión de Productos</a></li>
+  {% if user.rol == 'ADMIN' or user.rol == 'BODEGA' or user.is_superuser %}<li><a href="{% url 'inventario:existencias' %}">Gestión de Inventario</a></li>{% endif %}
+  {% if user.rol == 'ADMIN' or user.rol == 'VENDEDOR' or user.is_superuser %}<li><a href="{% url 'ventas:nueva' %}">Gestión de Ventas</a></li><li><a href="{% url 'caja:mi_caja' %}">Caja</a></li>{% endif %}
+  {% if user.rol == 'ADMIN' or user.is_superuser %}<li><a href="{% url 'usuarios:lista' %}">Usuarios y Roles</a></li>{% endif %}
+</ul>
 {% endblock %}

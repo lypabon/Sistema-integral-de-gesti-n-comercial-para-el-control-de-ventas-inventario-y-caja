@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Caja #{{ caja.pk }} — abierta</h1>
+<p>Abierta el {{ caja.abierta_en|date:"d/m/Y H:i" }} con un fondo de $ {{ caja.fondo_inicial }}.</p>
+<table style="max-width:520px">
+<tr><th>Concepto</th><th class="num">Valor</th></tr>
+<tr><td>Fondo inicial</td><td class="num">$ {{ caja.fondo_inicial }}</td></tr>
+<tr><td>Ventas en efectivo</td><td class="num">$ {{ resumen.ventas_efectivo }}</td></tr>
+<tr><td>Ingresos</td><td class="num">$ {{ resumen.ingresos }}</td></tr>
+<tr><td>Egresos</td><td class="num">− $ {{ resumen.egresos }}</td></tr>
+<tr><th>Efectivo esperado</th><th class="num">$ {{ esperado }}</th></tr>
+<tr><td>Ventas con tarjeta</td><td class="num">$ {{ resumen.ventas_tarjeta }}</td></tr>
+<tr><td>Ventas por transferencia</td><td class="num">$ {{ resumen.ventas_transferencia }}</td></tr>
+</table>
+<h2>Registrar ingreso o egreso</h2>
+<form method="post" action="{% url 'caja:movimiento' %}">{% csrf_token %}{{ form_mov.as_p }}<button class="btn sec">Registrar</button></form>
+<h2>Cerrar caja</h2>
+<form method="post" action="{% url 'caja:cerrar' %}">{% csrf_token %}{{ form_cierre.as_p }}<button class="btn">Cerrar caja</button></form>
+<h2>Movimientos del turno</h2>
+<table>
+<tr><th>Hora</th><th>Tipo</th><th>Medio</th><th class="num">Monto</th><th>Motivo</th><th>Referencia</th></tr>
+{% for m in caja.movimientos.all %}<tr><td>{{ m.fecha|date:"H:i" }}</td><td>{{ m.get_tipo_display }}</td><td>{{ m.get_medio_pago_display }}</td><td class="num">$ {{ m.monto }}</td><td>{{ m.motivo }}</td><td>{{ m.referencia }}</td></tr>
+{% empty %}<tr><td colspan="6">Aún no hay movimientos.</td></tr>{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Inventario</h1>
+{% if alertas %}
+<div class="alerta"><b>Alerta de bajo stock ({{ alertas|length }}):</b>
+{% for p in alertas %}{{ p.codigo }} {{ p.nombre }}{% if not forloop.last %}, {% endif %}{% endfor %}</div>
+{% endif %}
+<p><a class="btn" href="{% url 'inventario:entrada' %}">Registrar entrada</a> <a class="btn sec" href="{% url 'inventario:ajuste' %}">Ajustar inventario</a> <a class="btn sec" href="{% url 'inventario:movimientos' %}">Ver movimientos</a></p>
+<table>
+<tr><th>Código</th><th>Producto</th><th>Categoría</th><th class="num">Stock</th><th class="num">Stock mínimo</th></tr>
+{% for p, stock in filas %}
+<tr{% if stock <= p.stock_minimo %} style="background:#fff4e5"{% endif %}><td>{{ p.codigo }}</td><td>{{ p.nombre }}</td><td>{{ p.categoria }}</td><td class="num">{{ stock }}</td><td class="num">{{ p.stock_minimo }}</td></tr>
+{% empty %}<tr><td colspan="5">No hay productos activos.</td></tr>{% endfor %}
+</table>
+{% endblock %}

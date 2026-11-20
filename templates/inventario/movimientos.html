@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Movimientos de inventario</h1>
+<table>
+<tr><th>Fecha</th><th>Producto</th><th>Tipo</th><th class="num">Cantidad</th><th class="num">Stock resultante</th><th>Motivo</th><th>Referencia</th><th>Usuario</th></tr>
+{% for m in movimientos %}
+<tr><td>{{ m.fecha|date:"d/m/Y H:i" }}</td><td>{{ m.producto }}</td><td>{{ m.get_tipo_display }}</td><td class="num">{{ m.cantidad }}</td><td class="num">{{ m.stock_resultante }}</td><td>{{ m.motivo }}</td><td>{{ m.referencia }}</td><td>{{ m.usuario.username|default:"—" }}</td></tr>
+{% empty %}<tr><td colspan="8">Sin movimientos.</td></tr>{% endfor %}
+</table>
+{% endblock %}

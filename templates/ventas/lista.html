@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Ventas</h1>
+<p><a class="btn" href="{% url 'ventas:nueva' %}">Nueva venta</a></p>
+<table>
+<tr><th>Número</th><th>Fecha</th><th>Vendedor</th><th>Medio de pago</th><th class="num">Total</th></tr>
+{% for v in ventas %}<tr><td><a href="{% url 'ventas:comprobante' v.pk %}">{{ v.numero }}</a></td><td>{{ v.fecha|date:"d/m/Y H:i" }}</td><td>{{ v.vendedor.username }}</td><td>{{ v.get_medio_pago_display }}</td><td class="num">$ {{ v.total }}</td></tr>
+{% empty %}<tr><td colspan="5">Sin ventas.</td></tr>{% endfor %}
+</table>
+{% endblock %}

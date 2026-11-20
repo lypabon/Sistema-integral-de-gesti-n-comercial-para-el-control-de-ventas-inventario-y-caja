@@ -136,3 +136,7 @@ AUTH_USER_MODEL = "usuarios.Usuario"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "inicio"
 LOGOUT_REDIRECT_URL = "login"
+
+# Reglas de venta (VE-02)
+VENTAS_IVA = "0.19"            # 19 % sobre (subtotal − descuento)
+VENTAS_DESCUENTO_MAX = "10"    # descuento máximo permitido al vendedor, en %

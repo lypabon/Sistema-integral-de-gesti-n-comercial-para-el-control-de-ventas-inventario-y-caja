@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Nueva venta</h1>
+<form method="post">{% csrf_token %}
+{{ lineas.management_form }}
+<table>
+<tr><th>Producto</th><th style="width:120px">Cantidad</th></tr>
+{% for f in lineas %}<tr><td>{{ f.producto }}</td><td>{{ f.cantidad }}</td></tr>{% endfor %}
+</table>
+<p style="font-size:13px;color:#555">Se aplica IVA del {{ iva|floatformat:0 }} % sobre el valor con descuento. Descuento máximo: {{ desc_max }} %.</p>
+{{ pago.as_p }}
+<button class="btn">Confirmar venta</button>
+</form>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Abrir caja</h1>
+<p>No tiene una caja abierta. Registre el efectivo con el que empieza el turno.</p>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn">Abrir caja</button></form>
+{% endblock %}

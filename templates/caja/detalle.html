@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Cierre de la caja #{{ caja.pk }}</h1>
+<table style="max-width:520px">
+<tr><td>Responsable</td><td>{{ caja.responsable }}</td></tr>
+<tr><td>Apertura</td><td>{{ caja.abierta_en|date:"d/m/Y H:i" }}</td></tr>
+<tr><td>Cierre</td><td>{{ caja.cerrada_en|date:"d/m/Y H:i"|default:"—" }}</td></tr>
+<tr><td>Fondo inicial</td><td class="num">$ {{ caja.fondo_inicial }}</td></tr>
+<tr><td>Ventas en efectivo</td><td class="num">$ {{ resumen.ventas_efectivo }}</td></tr>
+<tr><td>Ingresos / egresos</td><td class="num">$ {{ resumen.ingresos }} / $ {{ resumen.egresos }}</td></tr>
+<tr><th>Efectivo esperado</th><th class="num">$ {{ caja.efectivo_esperado|default:"—" }}</th></tr>
+<tr><th>Efectivo contado</th><th class="num">$ {{ caja.efectivo_contado|default:"—" }}</th></tr>
+<tr><th>Diferencia</th><th class="num">$ {{ caja.diferencia|default:"—" }}</th></tr>
+<tr><td>Observación</td><td>{{ caja.observacion|default:"—" }}</td></tr>
+</table>
+<p><a class="btn" href="{% url 'caja:mi_caja' %}">Volver a caja</a></p>
+{% endblock %}

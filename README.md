@@ -44,8 +44,8 @@ Este sistema centraliza toda la operación del comercio en un solo lugar: recibi
 |---|---|---|
 | [Avance 1](docs/avances/AVANCE_01.md) | Organización del repositorio, división de actividades y roadmap | ✅ Entregado |
 | [Semana 1](docs/avances/AVANCE_SEMANA_1.md) | Puntos 1 y 2, inicio del Punto 3, decisión de tecnología y módulos de Usuarios y Productos | ✅ Entregado |
-| Semana 2 | Cierre del Punto 3, Puntos 4 y 7, módulos de Inventario, Ventas y Caja | ⏳ Pendiente |
-| Semana 3 | Puntos 5, 6 y 8, revisión y entrega del PDF final | ⏳ Pendiente |
+| [Semana 2](docs/avances/AVANCE_SEMANA_2.md) | Cierre del Punto 3, Puntos 4, 5 y 7, módulos de Inventario, Ventas y Caja | ✅ Entregado |
+| Semana 3 | Puntos 6 y 8, módulos de Clientes, Compras y Reportes, revisión y entrega del PDF final | ⏳ Pendiente |
 
 Ver el plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
@@ -72,7 +72,10 @@ python manage.py runserver
 ├── apps/                    # Un módulo del sistema por carpeta
 │   ├── usuarios/            # Usuarios y Roles (US-01, US-02)
 │   ├── productos/           # Gestión de Productos (PR-01 a PR-04)
-│   ├── inventario/  ventas/  clientes/  compras/  caja/  reportes/
+│   ├── inventario/          # Gestión de Inventario (IN-01 a IN-04)
+│   ├── ventas/              # Gestión de Ventas (VE-01 a VE-04)
+│   ├── caja/                # Caja (CJ-01 a CJ-03)
+│   ├── clientes/  compras/  reportes/   # Pendientes (Semana 3)
 ├── templates/               # Capa de presentación (pantallas HTML)
 └── docs/
     ├── PLAN_DE_TRABAJO.md   # Quién hace qué
